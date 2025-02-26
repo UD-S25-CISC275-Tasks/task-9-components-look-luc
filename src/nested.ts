@@ -1,6 +1,6 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
-import { makeBlankQuestion } from "./objects";
+import { duplicateQuestion, makeBlankQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -190,7 +190,14 @@ export function renameQuestionById(
     targetId: number,
     newName: string,
 ): Question[] {
-    return [];
+    let rename = questions.map((question: Question) => {
+        if (question.id === targetId) {
+            return { ...question, name: newName };
+        } else {
+            return question;
+        }
+    });
+    return rename;
 }
 
 /***
@@ -205,7 +212,18 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType,
 ): Question[] {
-    return [];
+    let retype = questions.map((question: Question) => {
+        if (question.id === targetId) {
+            if (newQuestionType !== "multiple_choice_question") {
+                return { ...question, type: newQuestionType, options: [] };
+            } else {
+                return { ...question, type: newQuestionType };
+            }
+        } else {
+            return question;
+        }
+    });
+    return retype;
 }
 
 /**
@@ -224,7 +242,32 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    return [];
+    let editOptions = questions.map((question: Question) => {
+        if (question.id === targetId) {
+            if (targetOptionIndex === -1) {
+                return {
+                    ...question,
+                    options: [...question.options, newOption],
+                };
+            } else {
+                return {
+                    ...question,
+                    options: question.options.map(
+                        (option: string, curr: number) => {
+                            if (curr === targetOptionIndex) {
+                                return newOption;
+                            } else {
+                                return option;
+                            }
+                        },
+                    ),
+                };
+            }
+        } else {
+            return question;
+        }
+    });
+    return editOptions;
 }
 
 /***
@@ -238,5 +281,13 @@ export function duplicateQuestionInArray(
     targetId: number,
     newId: number,
 ): Question[] {
-    return [];
+    let index = questions.findIndex((question) => question.id === targetId);
+    let duplicate = duplicateQuestion(newId, questions[index]);
+
+    let duplicateQues = [
+        ...questions.slice(0, index + 1),
+        duplicate,
+        ...questions.slice(index + 1, questions.length),
+    ];
+    return duplicateQues;
 }
