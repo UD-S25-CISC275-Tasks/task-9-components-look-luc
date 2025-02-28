@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX } from "react";
 import "./App.css";
 import { ChangeType } from "./components/ChangeType";
 import { RevealAnswer } from "./components/RevealAnswer";
