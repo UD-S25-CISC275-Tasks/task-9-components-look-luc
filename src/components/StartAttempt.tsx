@@ -6,14 +6,27 @@ export function StartAttempt(): React.JSX.Element {
     const [attempts, setAttempts] = useState<number>(4);
     const buttonUpdate = () => {
         setAttempts((prevAtt) => prevAtt - 1),
-            setProgress((prevProgress) => !prevProgress);
+            setProgress((prevProgress) => true);
     };
     return (
         <div>
-            {attempts}
-            <Button onClick={buttonUpdate}>Start Quiz</Button>
-            <Button onClick={() => setProgress(!progress)}>Stop Quiz</Button>
-            <Button onClick={() => setAttempts(attempts + 1)}>Mulligan</Button>
+            Start Attempt
+            <p>{attempts}</p>
+            <Button
+                onClick={buttonUpdate}
+                disabled={progress || attempts === 0}
+            >
+                Start Quiz
+            </Button>
+            <Button
+                onClick={() => setAttempts(attempts + 1)}
+                disabled={progress}
+            >
+                Mulligan
+            </Button>
+            <Button onClick={() => setProgress(false)} disabled={!progress}>
+                Stop Quiz
+            </Button>
         </div>
     );
 }
