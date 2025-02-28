@@ -21,7 +21,7 @@
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": 12,
+        "ecmaVersion": 8,
         "sourceType": "module"
     },
     "plugins": ["react", "@typescript-eslint", "prettier"],
