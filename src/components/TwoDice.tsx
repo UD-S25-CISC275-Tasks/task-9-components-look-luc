@@ -12,13 +12,13 @@ export function d6(): number {
 }
 
 export function TwoDice(): React.JSX.Element {
-    const [leftDie, setLeftDie] = useState<number>(d6());
-    const [rightDie, setRightDie] = useState<number>((leftDie % 6) + 1);
+    const [leftDie, setLeftDie] = useState<number>(7);
+    const [rightDie, setRightDie] = useState<number>(3);
     let message = null;
 
     if (leftDie === rightDie) {
         if (leftDie === 1) {
-            message = screen.getByText(/hello/i);
+            message = <p>Lose!</p>;
         } else {
             message = <p>Win!</p>;
         }
