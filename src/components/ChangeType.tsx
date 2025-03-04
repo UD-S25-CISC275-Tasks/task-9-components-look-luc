@@ -13,13 +13,13 @@ export function ChangeType(): React.JSX.Element {
                 <p>Short Answer</p>
             )}
             <Button
-                onClick={() =>
+                onClick={() => {
                     setType(
                         type === "short_answer_question"
                             ? "multiple_choice_question"
                             : "short_answer_question"
-                    )
-                }
+                    );
+                }}
             >
                 Change Type
             </Button>

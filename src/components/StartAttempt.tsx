@@ -5,8 +5,8 @@ export function StartAttempt(): React.JSX.Element {
     const [progress, setProgress] = useState<boolean>(false);
     const [attempts, setAttempts] = useState<number>(4);
     const buttonUpdate = () => {
-        setAttempts((prevAtt) => prevAtt - 1),
-            setProgress((prevProgress) => true);
+        setAttempts((prevAtt) => prevAtt - 1);
+        setProgress(true);
     };
     return (
         <div>
@@ -19,12 +19,19 @@ export function StartAttempt(): React.JSX.Element {
                 Start Quiz
             </Button>
             <Button
-                onClick={() => setAttempts(attempts + 1)}
+                onClick={() => {
+                    setAttempts(attempts + 1);
+                }}
                 disabled={progress}
             >
                 Mulligan
             </Button>
-            <Button onClick={() => setProgress(false)} disabled={!progress}>
+            <Button
+                onClick={() => {
+                    setProgress(false);
+                }}
+                disabled={!progress}
+            >
                 Stop Quiz
             </Button>
         </div>
