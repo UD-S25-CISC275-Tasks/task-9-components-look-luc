@@ -10,7 +10,6 @@ import { DoubleHalf } from "./bad-components/DoubleHalf";
 import { ColoredBox } from "./bad-components/ColoredBox";
 import { ShoveBox } from "./bad-components/ShoveBox";
 import { ChooseTeam } from "./bad-components/ChooseTeam";
-
 function App(): React.JSX.Element {
     return (
         <div className="App">
@@ -36,7 +35,7 @@ function App(): React.JSX.Element {
             <hr />
             <ChangeType></ChangeType>
             <hr />
-            <CycleHoliday></CycleHoliday>
+            <CycleHoliday></CycleHoliday>{" "}
         </div>
     );
 }
